@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BowlingFileWriterTest {
     @Test
-    void write() throws IOException {
+    void testWriteFile() throws IOException {
         String path = System.getProperty("user.dir") + "/src/test/java/resources/file.output";
         BowlingGame game = new BowlingGame();
         game.addPlayer(new BowlingPlayer("Jeff", 10));
