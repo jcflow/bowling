@@ -73,10 +73,9 @@ public class BowlingFileReaderTest {
     void testReadFile2RetrieveResult() {
         BowlingGame game = BowlingFileReader.readFile(this.path2);
 
-        BowlingPlayer player1 = game.getPlayerWithName("Jeff");
-        BowlingPlayer player2 = game.getPlayerWithName("John");
+        BowlingPlayer player1 = game.getPlayerWithName("Carl");
 
-        int[] player1Results = {20, 39, 48, 66, 74, 84, 90, 120, 148, 167};
+        int[] player1Results = {30, 60, 90, 120, 150, 180, 210, 240, 270, 300};
 
         for (int i = 0; i < 10; i++) {
             assertEquals(player1Results[i], player1.retrieveFrameResult(i));

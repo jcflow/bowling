@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BowlingGame {
+    public static final int FRAMES_SIZE = 10;
+
     private List<BowlingPlayer> players;
 
     public BowlingGame() {
