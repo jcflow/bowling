@@ -58,4 +58,46 @@ public class IntegrationTest {
         }
         outputFile.delete();
     }
+
+    @Test
+    void testReadAndWriteFile3() throws IOException {
+        String path = System.getProperty("user.dir") + "/src/test/java/resources/file3.bowling";
+        BowlingGame game = BowlingFileReader.readFile(path);
+
+        String output = System.getProperty("user.dir") + "/src/test/java/resources/file.output";
+        BowlingFileWriter.writeFile(output, game);
+        String[] expectedLines = {
+                "Frame\t\t1\t\t2\t\t3\t\t4\t\t5\t\t6\t\t7\t\t8\t\t9\t\t10",
+                "Carl",
+                "Pinfalls\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0\t0",
+                "Score\t\t0\t\t0\t\t0\t\t0\t\t0\t\t0\t\t0\t\t0\t\t0\t\t0"
+        };
+        File outputFile = new File(output);
+        List<String> lines = Files.readAllLines(outputFile.toPath(), Charset.defaultCharset());
+        for (int i = 0; i < expectedLines.length; i++) {
+            assertEquals(expectedLines[i], lines.get(i));
+        }
+        outputFile.delete();
+    }
+
+    @Test
+    void testReadAndWriteFile4() throws IOException {
+        String path = System.getProperty("user.dir") + "/src/test/java/resources/file4.bowling";
+        BowlingGame game = BowlingFileReader.readFile(path);
+
+        String output = System.getProperty("user.dir") + "/src/test/java/resources/file.output";
+        BowlingFileWriter.writeFile(output, game);
+        String[] expectedLines = {
+                "Frame\t\t1\t\t2\t\t3\t\t4\t\t5\t\t6\t\t7\t\t8\t\t9\t\t10",
+                "Carl",
+                "Pinfalls\tF\tF\tF\tF\tF\tF\tF\tF\tF\tF\tF\tF\tF\tF\tF\tF\tF\tF\tF\tF\tF",
+                "Score\t\t0\t\t0\t\t0\t\t0\t\t0\t\t0\t\t0\t\t0\t\t0\t\t0"
+        };
+        File outputFile = new File(output);
+        List<String> lines = Files.readAllLines(outputFile.toPath(), Charset.defaultCharset());
+        for (int i = 0; i < expectedLines.length; i++) {
+            assertEquals(expectedLines[i], lines.get(i));
+        }
+        outputFile.delete();
+    }
 }
