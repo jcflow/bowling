@@ -1,9 +1,6 @@
 package com.juanchavezcornejo.bowling.core;
 
 import com.juanchavezcornejo.bowling.core.frames.BowlingFrame;
-import com.juanchavezcornejo.bowling.core.frames.EndFrame;
-import com.juanchavezcornejo.bowling.core.frames.MiddleFrame;
-import com.juanchavezcornejo.bowling.core.frames.StartFrame;
 import com.juanchavezcornejo.bowling.core.score.Score;
 
 import java.util.ArrayList;
@@ -18,7 +15,7 @@ public class BowlingPlayer {
     public BowlingPlayer(String name, int frameListSize) {
         this.name = name;
         this.frameListSize = frameListSize;
-        this.currentFrame = BowlingPlayer.initFrameLine(frameListSize);
+        this.currentFrame = BowlingUtils.initFrameLine(frameListSize);
     }
 
     @Override
@@ -74,25 +71,5 @@ public class BowlingPlayer {
         this.currentFrame = temp;
         Collections.reverse(frames);
         return frames;
-    }
-
-    private static BowlingFrame initFrameLine(int frameListSize) {
-        BowlingFrame currentFrame = null;
-        for (int c = 0; c < frameListSize; c++) {
-            BowlingFrame frame = null;
-            if (c <= 0) {
-                frame = new EndFrame();
-            } else if (c >= frameListSize - 1) {
-                frame = new StartFrame();
-            } else {
-                frame = new MiddleFrame();
-            }
-            if (currentFrame != null) {
-                frame.setNext(currentFrame);
-                currentFrame.setPrevious(frame);
-            }
-            currentFrame = frame;
-        }
-        return currentFrame;
     }
 }
