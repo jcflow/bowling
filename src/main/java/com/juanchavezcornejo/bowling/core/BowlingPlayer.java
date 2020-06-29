@@ -38,7 +38,7 @@ public class BowlingPlayer {
             this.currentFrame = this.currentFrame.getNext();
             addScore(score);
         } else {
-            throw new RuntimeException();
+            throw new BowlingException("Could not add new score to this player.");
         }
     }
 
@@ -50,14 +50,14 @@ public class BowlingPlayer {
     }
 
     private int retrieveFrameResult(int index, int count) {
-        if (index >= (this.frameListSize - count - 1)) {
+        if (index == (this.frameListSize - count - 1)) {
             return this.currentFrame.retrieveSum();
         }
         if (this.currentFrame.getPrevious() != null) {
             this.currentFrame = this.currentFrame.getPrevious();
             return this.retrieveFrameResult(index, count + 1);
         }
-        throw new RuntimeException();
+        throw new BowlingException("Could not retrieve frame result.");
     }
 
     public List<BowlingFrame> retrieveFrames() {

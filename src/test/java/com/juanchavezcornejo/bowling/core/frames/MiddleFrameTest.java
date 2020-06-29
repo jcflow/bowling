@@ -1,10 +1,10 @@
 package com.juanchavezcornejo.bowling.core.frames;
 
+import com.juanchavezcornejo.bowling.core.BowlingException;
 import com.juanchavezcornejo.bowling.core.score.Score;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -48,6 +48,14 @@ public class MiddleFrameTest {
     }
 
     @Test
+    public void testSumWithNoRolls() {
+        assertThrows(BowlingException.class, () -> {
+            MiddleFrame frame = new MiddleFrame();
+            frame.retrieveSum();
+        });
+    }
+
+    @Test
     public void testRetrieveScoreListWithNoSpareNoStrike() {
         MiddleFrame frame = new MiddleFrame();
         frame.addScore(Score.ONE);
@@ -63,7 +71,6 @@ public class MiddleFrameTest {
         MiddleFrame frame = new MiddleFrame();
         frame.addScore(Score.STRIKE);
 
-
         assertEquals(1, frame.retrieveScoreList().size());
         assertEquals(Score.STRIKE, frame.retrieveScoreList().get(0));
     }
@@ -74,10 +81,27 @@ public class MiddleFrameTest {
         frame.addScore(Score.ONE);
         frame.addScore(Score.NINE);
 
-
         assertEquals(2, frame.retrieveScoreList().size());
         assertEquals(Score.ONE, frame.retrieveScoreList().get(0));
         assertEquals(Score.SPARE, frame.retrieveScoreList().get(1));
+    }
+
+    @Test
+    public void testAddMoreScores() {
+        assertThrows(BowlingException.class, () -> {
+            MiddleFrame frame = new MiddleFrame();
+            frame.addScore(Score.ONE);
+            frame.addScore(Score.NINE);
+            frame.addScore(Score.ONE);
+        });
+    }
+
+    @Test
+    public void testAddNull() {
+        assertThrows(BowlingException.class, () -> {
+            MiddleFrame frame = new MiddleFrame();
+            frame.addScore(null);
+        });
     }
 
     @Test
@@ -89,10 +113,11 @@ public class MiddleFrameTest {
 
     @Test
     public void testHasStrikeWithInvalidStrike() {
-        MiddleFrame frame = new MiddleFrame();
-        frame.addScore(Score.ONE);
-        frame.addScore(Score.STRIKE);
-        assertFalse(frame.hasStrike());
+        assertThrows(BowlingException.class, () -> {
+            MiddleFrame frame = new MiddleFrame();
+            frame.addScore(Score.ONE);
+            frame.addScore(Score.STRIKE);
+        });
     }
 
     @Test
@@ -126,6 +151,7 @@ public class MiddleFrameTest {
         frame.addScore(Score.TWO);
         assertFalse(frame.hasSpare());
     }
+
     @Test
     public void testAddScore() {
         MiddleFrame frame = new MiddleFrame();

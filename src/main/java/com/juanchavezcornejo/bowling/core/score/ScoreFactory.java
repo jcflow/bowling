@@ -1,5 +1,7 @@
 package com.juanchavezcornejo.bowling.core.score;
 
+import com.juanchavezcornejo.bowling.core.BowlingException;
+
 public class ScoreFactory {
     public static Score createScore(String characters) {
         switch (characters) {
@@ -28,7 +30,7 @@ public class ScoreFactory {
             case "F":
                 return Score.FOUL;
             default:
-                throw new RuntimeException();
+                throw new BowlingException("Invalid string score argument.");
         }
     }
 }

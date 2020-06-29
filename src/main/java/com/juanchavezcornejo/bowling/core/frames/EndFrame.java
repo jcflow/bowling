@@ -72,8 +72,15 @@ public class EndFrame implements BowlingFrame {
         if (this.firstRoll == null) {
             this.firstRoll = score;
         } else if (this.secondRoll == null) {
+            if (this.firstRoll != Score.STRIKE && (this.firstRoll.getValue() + score.getValue()) > 10) {
+                throw new BowlingException("Invalid score in the frame.");
+            }
             this.secondRoll = score;
         } else if (this.thirdRoll == null) {
+            if (this.firstRoll == Score.STRIKE && this.secondRoll != Score.STRIKE
+                    && (this.secondRoll.getValue() + score.getValue()) > 10) {
+                throw new BowlingException("Invalid score in the frame.");
+            }
             this.thirdRoll = score;
         } else {
             throw new BowlingException("No more scores permitted in the frame.");

@@ -1,10 +1,10 @@
 package com.juanchavezcornejo.bowling.core.frames;
 
+import com.juanchavezcornejo.bowling.core.BowlingException;
 import com.juanchavezcornejo.bowling.core.score.Score;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -59,6 +59,14 @@ public class EndFrameTest {
     }
 
     @Test
+    public void testSumWithNoRolls() {
+        assertThrows(BowlingException.class, () -> {
+            EndFrame frame = new EndFrame();
+            frame.retrieveSum();
+        });
+    }
+
+    @Test
     public void testRetrieveScoreListWithNoSpareNoStrike() {
         EndFrame frame = new EndFrame();
         frame.addScore(Score.ONE);
@@ -95,6 +103,25 @@ public class EndFrameTest {
         assertEquals(Score.ONE, frame.retrieveScoreList().get(0));
         assertEquals(Score.SPARE, frame.retrieveScoreList().get(1));
         assertEquals(Score.THREE, frame.retrieveScoreList().get(2));
+    }
+
+    @Test
+    public void testAddMoreScores() {
+        assertThrows(BowlingException.class, () -> {
+            EndFrame frame = new EndFrame();
+            frame.addScore(Score.ONE);
+            frame.addScore(Score.NINE);
+            frame.addScore(Score.ONE);
+            frame.addScore(Score.ONE);
+        });
+    }
+
+    @Test
+    public void testAddNull() {
+        assertThrows(BowlingException.class, () -> {
+            EndFrame frame = new EndFrame();
+            frame.addScore(null);
+        });
     }
 
     @Test
@@ -153,7 +180,7 @@ public class EndFrameTest {
     }
 
     @Test
-    public void endframe8() {
+    public void testAddScore() {
         EndFrame frame = new EndFrame();
         assertTrue(frame.canAddScore());
         frame.addScore(Score.ONE);
@@ -168,5 +195,13 @@ public class EndFrameTest {
     public void testRetrieveSize() {
         EndFrame frame = new EndFrame();
         assertEquals(3, frame.retrieveSize());
+    }
+
+    @Test
+    public void testSetNext() {
+        assertThrows(BowlingException.class, () -> {
+            EndFrame frame = new EndFrame();
+            frame.setNext(null);
+        });
     }
 }

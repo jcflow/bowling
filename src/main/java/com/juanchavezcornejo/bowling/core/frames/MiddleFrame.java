@@ -69,6 +69,9 @@ public class MiddleFrame implements BowlingFrame {
                 this.firstRoll = score;
             }
         } else if (this.secondRoll == null) {
+            if (this.firstRoll != Score.STRIKE && (this.firstRoll.getValue() + score.getValue()) > 10) {
+                throw new BowlingException("Invalid score in the frame.");
+            }
             this.secondRoll = score;
         } else {
             throw new BowlingException("No more scores permitted in the frame.");

@@ -1,8 +1,10 @@
 package com.juanchavezcornejo.bowling.core.score;
 
+import com.juanchavezcornejo.bowling.core.BowlingException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ScoreFactoryTest {
     @Test
@@ -42,5 +44,9 @@ public class ScoreFactoryTest {
 
         score = ScoreFactory.createScore("F");
         assertEquals(score, Score.FOUL);
+
+        assertThrows(BowlingException.class, () -> {
+            ScoreFactory.createScore("?");
+        });
     }
 }

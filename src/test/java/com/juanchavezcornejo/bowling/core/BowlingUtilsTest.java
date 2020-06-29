@@ -6,6 +6,7 @@ import com.juanchavezcornejo.bowling.core.frames.MiddleFrame;
 import com.juanchavezcornejo.bowling.core.frames.StartFrame;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BowlingUtilsTest {
@@ -26,5 +27,12 @@ public class BowlingUtilsTest {
         assertTrue(frame instanceof StartFrame);
         assertTrue(frame.getNext() instanceof MiddleFrame);
         assertTrue(frame.getNext().getNext() instanceof EndFrame);
+    }
+
+    @Test
+    public void testWithInvalidSize() {
+        assertThrows(BowlingException.class, () -> {
+            BowlingFrame frame = BowlingUtils.initFrameLine(1);
+        });
     }
 }

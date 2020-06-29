@@ -1,10 +1,9 @@
 package com.juanchavezcornejo.bowling.core.frames;
 
+import com.juanchavezcornejo.bowling.core.BowlingException;
 import com.juanchavezcornejo.bowling.core.score.Score;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -46,6 +45,14 @@ public class StartFrameTest {
     }
 
     @Test
+    public void testSumWithNoRolls() {
+        assertThrows(BowlingException.class, () -> {
+            StartFrame frame = new StartFrame();
+            frame.retrieveSum();
+        });
+    }
+
+    @Test
     public void testRetrieveScoreListWithNoSpareNoStrike() {
         StartFrame frame = new StartFrame();
         frame.addScore(Score.ONE);
@@ -77,6 +84,24 @@ public class StartFrameTest {
     }
 
     @Test
+    public void testAddMoreScores() {
+        assertThrows(BowlingException.class, () -> {
+            StartFrame frame = new StartFrame();
+            frame.addScore(Score.ONE);
+            frame.addScore(Score.NINE);
+            frame.addScore(Score.ONE);
+        });
+    }
+
+    @Test
+    public void testAddNull() {
+        assertThrows(BowlingException.class, () -> {
+            StartFrame frame = new StartFrame();
+            frame.addScore(null);
+        });
+    }
+
+    @Test
     public void testHasStrikeWithValidStrike() {
         StartFrame frame = new StartFrame();
         frame.addScore(Score.STRIKE);
@@ -85,10 +110,11 @@ public class StartFrameTest {
 
     @Test
     public void testHasStrikeWithInvalidStrike() {
-        StartFrame frame = new StartFrame();
-        frame.addScore(Score.ONE);
-        frame.addScore(Score.STRIKE);
-        assertFalse(frame.hasStrike());
+        assertThrows(BowlingException.class, () -> {
+            StartFrame frame = new StartFrame();
+            frame.addScore(Score.ONE);
+            frame.addScore(Score.STRIKE);
+        });
     }
 
     @Test
@@ -137,5 +163,13 @@ public class StartFrameTest {
     public void testRetrieveSize() {
         StartFrame frame = new StartFrame();
         assertEquals(2, frame.retrieveSize());
+    }
+
+    @Test
+    public void testSetPrevious() {
+        assertThrows(BowlingException.class, () -> {
+            StartFrame frame = new StartFrame();
+            frame.setPrevious(null);
+        });
     }
 }

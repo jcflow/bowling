@@ -16,20 +16,16 @@ public class BowlingFileWriter {
     private static final char SPARE_SYMBOL = '/';
     private static final String SEPARATOR = "\t";
 
-    public static void writeFile(String fileName, BowlingGame game) {
-        try {
-            FileWriter fileWriter = new FileWriter(fileName);
-            PrintWriter printWriter = new PrintWriter(fileWriter);
-            printWriter.println(BowlingFileWriter.createHeaderLine());
-            game.getPlayers().forEach(player -> {
-                printWriter.println(player.getName());
-                printWriter.println(BowlingFileWriter.createPinfallsLine(player));
-                printWriter.println(BowlingFileWriter.createScoreLine(player));
-            });
-            printWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static void writeFile(String fileName, BowlingGame game) throws IOException {
+        FileWriter fileWriter = new FileWriter(fileName);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        printWriter.println(BowlingFileWriter.createHeaderLine());
+        game.getPlayers().forEach(player -> {
+            printWriter.println(player.getName());
+            printWriter.println(BowlingFileWriter.createPinfallsLine(player));
+            printWriter.println(BowlingFileWriter.createScoreLine(player));
+        });
+        printWriter.close();
     }
 
     private static String createHeaderLine() {

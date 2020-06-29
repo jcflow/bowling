@@ -3,8 +3,7 @@ package com.juanchavezcornejo.bowling.core;
 import com.juanchavezcornejo.bowling.core.score.Score;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BowlingGameTest {
     @Test
@@ -119,5 +118,42 @@ public class BowlingGameTest {
         assertEquals(30, player.retrieveFrameResult(0));
         assertEquals(60, player.retrieveFrameResult(1));
         assertEquals(90, player.retrieveFrameResult(2));
+    }
+
+    @Test
+    public void testRetrieveFrameResultInvalid() {
+        assertThrows(BowlingException.class, () -> {
+            BowlingGame game = new BowlingGame();
+            BowlingPlayer player = new BowlingPlayer("Juan", 3);
+            game.addPlayer(player);
+
+            game.addScore("Juan", Score.STRIKE);
+
+            game.addScore("Juan", Score.STRIKE);
+
+            game.addScore("Juan", Score.STRIKE);
+            game.addScore("Juan", Score.STRIKE);
+            game.addScore("Juan", Score.STRIKE);
+            game.addScore("Juan", Score.STRIKE);
+        });
+    }
+
+    @Test
+    public void testRetrieveFrameResultInvalidIndex() {
+        assertThrows(BowlingException.class, () -> {
+            BowlingGame game = new BowlingGame();
+            BowlingPlayer player = new BowlingPlayer("Juan", 3);
+            game.addPlayer(player);
+
+            game.addScore("Juan", Score.STRIKE);
+
+            game.addScore("Juan", Score.STRIKE);
+
+            game.addScore("Juan", Score.STRIKE);
+            game.addScore("Juan", Score.STRIKE);
+            game.addScore("Juan", Score.STRIKE);
+
+            assertEquals(90, player.retrieveFrameResult(4));
+        });
     }
 }

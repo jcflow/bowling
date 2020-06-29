@@ -36,7 +36,7 @@ public class BowlingGame {
     public void addScore(String name, Score score) {
         BowlingPlayer result = this.getPlayerWithName(name);
         if (result == null) {
-            throw new RuntimeException();
+            throw new BowlingException("No such player in this game.");
         }
         result.addScore(score);
     }

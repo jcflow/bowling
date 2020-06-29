@@ -17,7 +17,7 @@ public class BowlingUtils {
 
     public static BowlingFrame initFrameLine(int frameListSize) {
         if (frameListSize < 3) {
-            throw new RuntimeException();
+            throw new BowlingException("Minimum frame list size is 3.");
         }
         BowlingFrame currentFrame = null;
         for (int c = 0; c < frameListSize; c++) {
