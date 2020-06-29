@@ -246,7 +246,7 @@ public class StartFrameTest {
 
         assertEquals(2, frame.retrieveScoreList().size());
         assertEquals(Score.ONE, frame.retrieveScoreList().get(0));
-        assertEquals(Score.NINE, frame.retrieveScoreList().get(1));
+        assertEquals(Score.SPARE, frame.retrieveScoreList().get(1));
     }
 
     @Test
