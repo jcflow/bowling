@@ -84,7 +84,7 @@ mvn package
 ### Execute
 
 ```sh
-java -jar "input.txt" "output.txt"
+java -jar target/Bowling-1.0-SNAPSHOT.jar "input.txt" "output.txt"
 ```
 
 License
