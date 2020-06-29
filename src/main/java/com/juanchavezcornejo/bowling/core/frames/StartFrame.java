@@ -1,4 +1,4 @@
-package com.juanchavezcornejo.bowling.frames;
+package com.juanchavezcornejo.bowling.core.frames;
 
 public class StartFrame extends MiddleFrame {
     public int retrieveSum() {

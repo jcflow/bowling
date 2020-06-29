@@ -1,4 +1,4 @@
-package com.juanchavezcornejo.bowling.score;
+package com.juanchavezcornejo.bowling.core.score;
 
 public class ScoreFactory {
     public static Score createScore(String characters) {

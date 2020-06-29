@@ -1,6 +1,6 @@
-package com.juanchavezcornejo.bowling.frames;
+package com.juanchavezcornejo.bowling.core.frames;
 
-import com.juanchavezcornejo.bowling.score.Score;
+import com.juanchavezcornejo.bowling.core.score.Score;
 
 import java.util.List;
 

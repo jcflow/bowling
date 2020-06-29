@@ -1,7 +1,5 @@
-package com.juanchavezcornejo.bowling.score;
+package com.juanchavezcornejo.bowling.core.score;
 
-import com.juanchavezcornejo.bowling.score.Score;
-import com.juanchavezcornejo.bowling.score.ScoreFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

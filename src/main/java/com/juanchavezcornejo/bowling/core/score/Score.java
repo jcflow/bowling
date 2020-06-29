@@ -1,4 +1,4 @@
-package com.juanchavezcornejo.bowling.score;
+package com.juanchavezcornejo.bowling.core.score;
 
 public enum Score {
     ZERO(0),
