@@ -1,4 +1,4 @@
-package com.juanchavezcornejo.bowling;
+package com.juanchavezcornejo.bowling.score;
 
 import com.juanchavezcornejo.bowling.score.Score;
 import com.juanchavezcornejo.bowling.score.ScoreFactory;
