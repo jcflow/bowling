@@ -11,24 +11,21 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 public class BowlingFileReader {
-    public static BowlingGame readFile(String fileName) {
+    public static BowlingGame readFile(String fileName) throws IOException {
         BowlingGame bowlingGame = new BowlingGame();
 
-        try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
-            stream.forEach((line) -> {
-                String name = line.split("\\s+")[0];
-                String stringScore = line.split("\\s+")[1];
-                Score score = ScoreFactory.createScore(stringScore);
-                BowlingPlayer player;
-                if (!bowlingGame.hasPlayerWithName(name)) {
-                    player = new BowlingPlayer(name, BowlingGame.FRAMES_SIZE);
-                    bowlingGame.addPlayer(player);
-                }
-                bowlingGame.addScore(name, score);
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Stream<String> stream = Files.lines(Paths.get(fileName));
+        stream.forEach((line) -> {
+            String name = line.split("\\s+")[0];
+            String stringScore = line.split("\\s+")[1];
+            Score score = ScoreFactory.createScore(stringScore);
+            BowlingPlayer player;
+            if (!bowlingGame.hasPlayerWithName(name)) {
+                player = new BowlingPlayer(name, BowlingGame.FRAMES_SIZE);
+                bowlingGame.addPlayer(player);
+            }
+            bowlingGame.addScore(name, score);
+        });
 
         return bowlingGame;
     }

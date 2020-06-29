@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -22,7 +24,7 @@ public class BowlingFileReaderTest {
     }
 
     @Test
-    void testReadFile1VerifyPlayers() {
+    void testReadFile1VerifyPlayers() throws IOException {
         BowlingGame game = BowlingFileReader.readFile(this.path1);
 
         assertEquals(2, game.getPlayers().size());
@@ -31,7 +33,7 @@ public class BowlingFileReaderTest {
     }
 
     @Test
-    void testReadFile1VerifyPlayersNames() {
+    void testReadFile1VerifyPlayersNames() throws IOException {
         BowlingGame game = BowlingFileReader.readFile(this.path1);
 
         assertTrue(game.hasPlayerWithName("Jeff"));
@@ -39,7 +41,7 @@ public class BowlingFileReaderTest {
     }
 
     @Test
-    void testReadFile1RetrieveResult() {
+    void testReadFile1RetrieveResult() throws IOException {
         BowlingGame game = BowlingFileReader.readFile(this.path1);
 
         BowlingPlayer player1 = game.getPlayerWithName("Jeff");
@@ -55,7 +57,7 @@ public class BowlingFileReaderTest {
     }
 
     @Test
-    void testReadFile2VerifyPlayers() {
+    void testReadFile2VerifyPlayers() throws IOException {
         BowlingGame game = BowlingFileReader.readFile(this.path2);
 
         assertEquals(1, game.getPlayers().size());
@@ -63,14 +65,14 @@ public class BowlingFileReaderTest {
     }
 
     @Test
-    void testReadFile2VerifyPlayersNames() {
+    void testReadFile2VerifyPlayersNames() throws IOException {
         BowlingGame game = BowlingFileReader.readFile(this.path2);
 
         assertTrue(game.hasPlayerWithName("Carl"));
     }
 
     @Test
-    void testReadFile2RetrieveResult() {
+    void testReadFile2RetrieveResult() throws IOException {
         BowlingGame game = BowlingFileReader.readFile(this.path2);
 
         BowlingPlayer player1 = game.getPlayerWithName("Carl");
