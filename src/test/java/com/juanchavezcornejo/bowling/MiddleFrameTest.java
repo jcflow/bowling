@@ -1,6 +1,7 @@
 package com.juanchavezcornejo.bowling;
 
 import com.juanchavezcornejo.bowling.frames.BowlingFrame;
+import com.juanchavezcornejo.bowling.frames.MiddleFrame;
 import com.juanchavezcornejo.bowling.frames.StartFrame;
 import com.juanchavezcornejo.bowling.score.Score;
 import org.junit.jupiter.api.Test;
@@ -10,10 +11,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class StartFrameTest {
+public class MiddleFrameTest {
     @Test
-    public void testSumWithNoSpareNoStrike() {
-        StartFrame frame = new StartFrame();
+    void testSumWithNoSpareNoStrike() {
+        MiddleFrame frame = new MiddleFrame();
         BowlingFrame mock = new BowlingFrame() {
             @Override
             public int retrieveSum() {
@@ -22,7 +23,7 @@ public class StartFrameTest {
 
             @Override
             public Score retrieveNextScore(int i) {
-                return Score.ONE;
+                return null;
             }
 
             @Override
@@ -75,15 +76,15 @@ public class StartFrameTest {
                 return 0;
             }
         };
-        frame.setNext(mock);
+        frame.setPrevious(mock);
         frame.addScore(Score.ONE);
         frame.addScore(Score.TWO);
-        assertEquals(4, frame.retrieveSum());
+        assertEquals(3, frame.retrieveSum());
     }
 
     @Test
-    public void testSumWithStrike() {
-        StartFrame frame = new StartFrame();
+    void testSumWithStrike() {
+        MiddleFrame frame = new MiddleFrame();
         BowlingFrame mock = new BowlingFrame() {
             @Override
             public int retrieveSum() {
@@ -145,14 +146,15 @@ public class StartFrameTest {
                 return 0;
             }
         };
+        frame.setPrevious(mock);
         frame.setNext(mock);
         frame.addScore(Score.STRIKE);
         assertEquals(30, frame.retrieveSum());
     }
 
     @Test
-    public void testSumWithSpare() {
-        StartFrame frame = new StartFrame();
+    void testSumWithSpare() {
+        MiddleFrame frame = new MiddleFrame();
         BowlingFrame mock = new BowlingFrame() {
             @Override
             public int retrieveSum() {
@@ -214,6 +216,7 @@ public class StartFrameTest {
                 return 0;
             }
         };
+        frame.setPrevious(mock);
         frame.setNext(mock);
         frame.addScore(Score.ONE);
         frame.addScore(Score.NINE);
@@ -221,8 +224,8 @@ public class StartFrameTest {
     }
 
     @Test
-    public void testRetrieveScoreListWithNoSpareNoStrike() {
-        StartFrame frame = new StartFrame();
+    void testRetrieveScoreListWithNoSpareNoStrike() {
+        MiddleFrame frame = new MiddleFrame();
         frame.addScore(Score.ONE);
         frame.addScore(Score.TWO);
 
@@ -232,19 +235,21 @@ public class StartFrameTest {
     }
 
     @Test
-    public void testRetrieveScoreListWithStrike() {
-        StartFrame frame = new StartFrame();
+    void testRetrieveScoreListWithStrike() {
+        MiddleFrame frame = new MiddleFrame();
         frame.addScore(Score.STRIKE);
+
 
         assertEquals(1, frame.retrieveScoreList().size());
         assertEquals(Score.STRIKE, frame.retrieveScoreList().get(0));
     }
 
     @Test
-    public void testRetrieveScoreListWithSpare() {
-        StartFrame frame = new StartFrame();
+    void testRetrieveScoreListWithSpare() {
+        MiddleFrame frame = new MiddleFrame();
         frame.addScore(Score.ONE);
         frame.addScore(Score.NINE);
+
 
         assertEquals(2, frame.retrieveScoreList().size());
         assertEquals(Score.ONE, frame.retrieveScoreList().get(0));
@@ -253,14 +258,14 @@ public class StartFrameTest {
 
     @Test
     public void testHasStrikeWithValidStrike() {
-        StartFrame frame = new StartFrame();
+        MiddleFrame frame = new MiddleFrame();
         frame.addScore(Score.STRIKE);
         assertTrue(frame.hasStrike());
     }
 
     @Test
     public void testHasStrikeWithInvalidStrike() {
-        StartFrame frame = new StartFrame();
+        MiddleFrame frame = new MiddleFrame();
         frame.addScore(Score.ONE);
         frame.addScore(Score.STRIKE);
         assertFalse(frame.hasStrike());
@@ -268,7 +273,7 @@ public class StartFrameTest {
 
     @Test
     public void testHasStrikeWithNoStrike() {
-        StartFrame frame = new StartFrame();
+        MiddleFrame frame = new MiddleFrame();
         frame.addScore(Score.ONE);
         frame.addScore(Score.TWO);
         assertFalse(frame.hasStrike());
@@ -276,7 +281,7 @@ public class StartFrameTest {
 
     @Test
     void testHasStrikeWithValidSpare1() {
-        StartFrame frame = new StartFrame();
+        MiddleFrame frame = new MiddleFrame();
         frame.addScore(Score.ONE);
         frame.addScore(Score.NINE);
         assertTrue(frame.hasSpare());
@@ -284,7 +289,7 @@ public class StartFrameTest {
 
     @Test
     void testHasStrikeWithValidSpare2() {
-        StartFrame frame = new StartFrame();
+        MiddleFrame frame = new MiddleFrame();
         frame.addScore(Score.NINE);
         frame.addScore(Score.ONE);
         assertTrue(frame.hasSpare());
@@ -292,15 +297,14 @@ public class StartFrameTest {
 
     @Test
     void testHasStrikeWithNoSpare() {
-        StartFrame frame = new StartFrame();
+        MiddleFrame frame = new MiddleFrame();
         frame.addScore(Score.ONE);
         frame.addScore(Score.TWO);
         assertFalse(frame.hasSpare());
     }
-
     @Test
     void testAddScore() {
-        StartFrame frame = new StartFrame();
+        MiddleFrame frame = new MiddleFrame();
         assertTrue(frame.canAddScore());
         frame.addScore(Score.ONE);
         assertTrue(frame.canAddScore());
@@ -310,7 +314,7 @@ public class StartFrameTest {
 
     @Test
     void testRetrieveSize() {
-        StartFrame frame = new StartFrame();
+        MiddleFrame frame = new MiddleFrame();
         assertEquals(2, frame.retrieveSize());
     }
 }
