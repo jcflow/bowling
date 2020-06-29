@@ -16,6 +16,7 @@ public class MiddleFrameTest {
         BowlingFrame mock = Mockito.mock(BowlingFrame.class);
         Mockito.when(mock.retrieveSum()).thenReturn(0);
         frame.setPrevious(mock);
+        frame.setNext(mock);
         frame.addScore(Score.ONE);
         frame.addScore(Score.TWO);
         assertEquals(3, frame.retrieveSum());

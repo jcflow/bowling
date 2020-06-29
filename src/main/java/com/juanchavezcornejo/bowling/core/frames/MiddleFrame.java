@@ -1,13 +1,15 @@
 package com.juanchavezcornejo.bowling.core.frames;
 
+import com.juanchavezcornejo.bowling.core.BowlingException;
+import com.juanchavezcornejo.bowling.core.BowlingUtils;
 import com.juanchavezcornejo.bowling.core.score.Score;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MiddleFrame implements BowlingFrame {
-    private BowlingFrame previous;
-    private BowlingFrame next;
+    protected BowlingFrame previous;
+    protected BowlingFrame next;
     protected Score firstRoll;
     protected Score secondRoll;
 
@@ -20,14 +22,17 @@ public class MiddleFrame implements BowlingFrame {
 
     @Override
     public int retrieveSum() {
-        int sum;
+        if (this.previous == null || this.next == null || this.firstRoll == null || this.secondRoll == null) {
+            throw new BowlingException("Previous frame, next frame or not all rolls are set.");
+        }
+        int sum = this.previous.retrieveSum();
         if (hasStrike()) {
-            sum = this.previous.retrieveSum() + 10 + this.next.retrieveNextScore(0).getValue()
+            sum += this.firstRoll.getValue() + this.next.retrieveNextScore(0).getValue()
                     + this.next.retrieveNextScore(1).getValue();
         } else if (hasSpare()) {
-            sum = this.previous.retrieveSum() + 10 + this.next.retrieveNextScore(0).getValue();
+            sum += Score.SPARE.getValue() + this.next.retrieveNextScore(0).getValue();
         } else {
-            sum = this.previous.retrieveSum() + this.firstRoll.getValue() + this.secondRoll.getValue();
+            sum += this.firstRoll.getValue() + this.secondRoll.getValue();
         }
         return sum;
     }
@@ -45,13 +50,16 @@ public class MiddleFrame implements BowlingFrame {
         } else {
             score = this.getNext().retrieveNextScore(i - 1);
         }
-        return score;
+        if (score != null) {
+            return score;
+        }
+        throw new BowlingException("There is next score.");
     }
 
     @Override
     public void addScore(Score score) {
         if (score == null) {
-            throw new RuntimeException();
+            throw new BowlingException("Score argument is null.");
         }
         if (this.firstRoll == null) {
             if (score == Score.STRIKE) {
@@ -63,7 +71,7 @@ public class MiddleFrame implements BowlingFrame {
         } else if (this.secondRoll == null) {
             this.secondRoll = score;
         } else {
-            throw new RuntimeException();
+            throw new BowlingException("No more scores permitted in the frame.");
         }
     }
 
@@ -94,7 +102,7 @@ public class MiddleFrame implements BowlingFrame {
 
     @Override
     public boolean hasSpare() {
-        return this.firstRoll.getValue() + this.secondRoll.getValue() == 10;
+        return BowlingUtils.isSpare(this.firstRoll, this.secondRoll);
     }
 
     @Override
@@ -112,7 +120,7 @@ public class MiddleFrame implements BowlingFrame {
             scores.add(this.firstRoll);
         }
         if (this.firstRoll != null && this.secondRoll != null) {
-            if (this.firstRoll != Score.STRIKE && this.firstRoll.getValue() + this.secondRoll.getValue() == 10) {
+            if (BowlingUtils.isSpare(this.firstRoll, this.secondRoll)) {
                 scores.add(Score.SPARE);
             } else if (this.secondRoll != Score.NONE) {
                 scores.add(this.secondRoll);

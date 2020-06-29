@@ -1,5 +1,7 @@
 package com.juanchavezcornejo.bowling.core.frames;
 
+import com.juanchavezcornejo.bowling.core.BowlingException;
+import com.juanchavezcornejo.bowling.core.BowlingUtils;
 import com.juanchavezcornejo.bowling.core.score.Score;
 
 import java.util.ArrayList;
@@ -21,25 +23,24 @@ public class EndFrame implements BowlingFrame {
     @Override
     public int retrieveSum() {
         if (this.previous == null || this.firstRoll == null || this.secondRoll == null || this.thirdRoll == null) {
-            throw new RuntimeException();
+            throw new BowlingException("Previous frame or not all rolls are set.");
         }
-        int sum = 0;
+        int sum = this.previous.retrieveSum();
         if (this.firstRoll == Score.STRIKE) {
-            sum = this.previous.retrieveSum() + 10 + this.retrieveNextScore(1).getValue()
+            sum += this.firstRoll.getValue() + this.retrieveNextScore(1).getValue()
                     + this.retrieveNextScore(2).getValue();
-        } if (this.secondRoll == Score.STRIKE) {
-            sum = this.previous.retrieveSum() + 10 + this.retrieveNextScore(0).getValue()
+        } else if (this.secondRoll == Score.STRIKE) {
+            sum += this.secondRoll.getValue() + this.retrieveNextScore(0).getValue()
                     + this.retrieveNextScore(2).getValue();
-        } if (this.thirdRoll == Score.STRIKE) {
-            sum = this.previous.retrieveSum() + 10 + this.retrieveNextScore(0).getValue()
+        } else if (this.thirdRoll == Score.STRIKE) {
+            sum += this.thirdRoll.getValue() + this.retrieveNextScore(0).getValue()
                     + this.retrieveNextScore(1).getValue();
-        } else if (this.firstRoll.getValue() + this.secondRoll.getValue() == 10) {
-            sum = this.previous.retrieveSum() + 10 + this.thirdRoll.getValue();
-        } else if (this.secondRoll.getValue() + this.thirdRoll.getValue() == 10) {
-            sum = this.previous.retrieveSum() + 10 + this.firstRoll.getValue();
+        } else if (BowlingUtils.isSpare(this.firstRoll, this.secondRoll)) {
+            sum +=  Score.SPARE.getValue() + this.thirdRoll.getValue();
+        } else if (BowlingUtils.isSpare(this.secondRoll, this.thirdRoll)) {
+            sum += Score.SPARE.getValue() + this.firstRoll.getValue();
         } else {
-            return this.previous.retrieveSum() + this.firstRoll.getValue() + this.secondRoll.getValue()
-                    + this.thirdRoll.getValue();
+            sum += this.firstRoll.getValue() + this.secondRoll.getValue() + this.thirdRoll.getValue();
         }
         return sum;
     }
@@ -60,13 +61,13 @@ public class EndFrame implements BowlingFrame {
         if (score != null) {
             return score;
         }
-        throw new RuntimeException();
+        throw new BowlingException("There is next score.");
     }
 
     @Override
     public void addScore(Score score) {
         if (score == null) {
-            throw new RuntimeException();
+            throw new BowlingException("Score argument is null.");
         }
         if (this.firstRoll == null) {
             this.firstRoll = score;
@@ -75,7 +76,7 @@ public class EndFrame implements BowlingFrame {
         } else if (this.thirdRoll == null) {
             this.thirdRoll = score;
         } else {
-            throw new RuntimeException();
+            throw new BowlingException("No more scores permitted in the frame.");
         }
     }
 
@@ -91,7 +92,7 @@ public class EndFrame implements BowlingFrame {
 
     @Override
     public void setNext(BowlingFrame next) {
-        throw new RuntimeException();
+        throw new BowlingException("End frame should not have a next reference.");
     }
 
     @Override
@@ -108,8 +109,8 @@ public class EndFrame implements BowlingFrame {
 
     @Override
     public boolean hasSpare() {
-        return this.firstRoll.getValue() + this.secondRoll.getValue() == 10 ||
-                this.secondRoll.getValue() + this.thirdRoll.getValue() == 10;
+        return BowlingUtils.isSpare(this.firstRoll, this.secondRoll) ||
+                BowlingUtils.isSpare(this.secondRoll, this.thirdRoll);
     }
 
     @Override
@@ -124,18 +125,16 @@ public class EndFrame implements BowlingFrame {
             scores.add(this.firstRoll);
         }
         if (this.firstRoll != null && this.secondRoll != null) {
-            if (this.firstRoll != Score.STRIKE && this.firstRoll.getValue() + this.secondRoll.getValue() == 10) {
+            if (BowlingUtils.isSpare(this.firstRoll, this.secondRoll)) {
                 scores.add(Score.SPARE);
             } else {
                 scores.add(this.secondRoll);
             }
         }
-        if (this.secondRoll != null && this.thirdRoll != null) {
-            if (this.secondRoll != Score.STRIKE && this.secondRoll.getValue() + this.thirdRoll.getValue() == 10) {
-                scores.add(Score.SPARE);
-            } else {
-                scores.add(this.thirdRoll);
-            }
+        if (BowlingUtils.isSpare(this.secondRoll, this.thirdRoll)) {
+            scores.add(Score.SPARE);
+        } else {
+            scores.add(this.thirdRoll);
         }
         return scores;
     }
