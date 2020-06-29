@@ -2,19 +2,40 @@ package com.juanchavezcornejo.bowling.core;
 
 import com.juanchavezcornejo.bowling.core.score.Score;
 
-public class BowlingGame {
+import java.util.ArrayList;
+import java.util.List;
 
-    public void addPlayer(BowlingPlayer player) {
+public class BowlingGame {
+    private List<BowlingPlayer> players;
+
+    public BowlingGame() {
+        this.players =  new ArrayList<>();
     }
 
-    public boolean hasPlayerWithName(String name) {
-        return false;
+    public void addPlayer(BowlingPlayer player) {
+        if (player != null && !this.players.contains(player)) {
+            this.players.add(player);
+        }
+    }
+
+    public List<BowlingPlayer> getPlayers() {
+        return players;
     }
 
     public BowlingPlayer getPlayerWithName(String name) {
-        return null;
+        return this.players.stream().filter(player -> player.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    public boolean hasPlayerWithName(String name) {
+        BowlingPlayer result = this.getPlayerWithName(name);
+        return result != null;
     }
 
     public void addScore(String name, Score score) {
+        BowlingPlayer result = this.getPlayerWithName(name);
+        if (result == null) {
+            throw new RuntimeException();
+        }
+        result.addScore(score);
     }
 }
