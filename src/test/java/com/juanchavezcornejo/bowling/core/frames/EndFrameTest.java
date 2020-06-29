@@ -2,6 +2,7 @@ package com.juanchavezcornejo.bowling.core.frames;
 
 import com.juanchavezcornejo.bowling.core.score.Score;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.List;
 
@@ -12,67 +13,8 @@ public class EndFrameTest {
     @Test
     public void testSumWithNoSpareNoStrike() {
         EndFrame frame = new EndFrame();
-        BowlingFrame mock = new BowlingFrame() {
-            @Override
-            public int retrieveSum() {
-                return 0;
-            }
-
-            @Override
-            public Score retrieveNextScore(int i) {
-                return null;
-            }
-
-            @Override
-            public void addScore(Score score) {
-
-            }
-
-            @Override
-            public void setPrevious(BowlingFrame previous) {
-
-            }
-
-            @Override
-            public BowlingFrame getPrevious() {
-                return null;
-            }
-
-            @Override
-            public void setNext(BowlingFrame next) {
-
-            }
-
-            @Override
-            public BowlingFrame getNext() {
-                return null;
-            }
-
-            @Override
-            public boolean hasStrike() {
-                return false;
-            }
-
-            @Override
-            public boolean hasSpare() {
-                return false;
-            }
-
-            @Override
-            public boolean canAddScore() {
-                return false;
-            }
-
-            @Override
-            public List<Score> retrieveScoreList() {
-                return null;
-            }
-
-            @Override
-            public int retrieveSize() {
-                return 0;
-            }
-        };
+        BowlingFrame mock = Mockito.mock(BowlingFrame.class);
+        Mockito.when(mock.retrieveSum()).thenReturn(0);
         frame.setPrevious(mock);
         frame.addScore(Score.ONE);
         frame.addScore(Score.TWO);
@@ -83,67 +25,8 @@ public class EndFrameTest {
     @Test
     public void testSumWithStrikeAndSpare1() {
         EndFrame frame = new EndFrame();
-        BowlingFrame mock = new BowlingFrame() {
-            @Override
-            public int retrieveSum() {
-                return 0;
-            }
-
-            @Override
-            public Score retrieveNextScore(int i) {
-                return null;
-            }
-
-            @Override
-            public void addScore(Score score) {
-
-            }
-
-            @Override
-            public void setPrevious(BowlingFrame previous) {
-
-            }
-
-            @Override
-            public BowlingFrame getPrevious() {
-                return null;
-            }
-
-            @Override
-            public void setNext(BowlingFrame next) {
-
-            }
-
-            @Override
-            public BowlingFrame getNext() {
-                return null;
-            }
-
-            @Override
-            public boolean hasStrike() {
-                return false;
-            }
-
-            @Override
-            public boolean hasSpare() {
-                return false;
-            }
-
-            @Override
-            public boolean canAddScore() {
-                return false;
-            }
-
-            @Override
-            public List<Score> retrieveScoreList() {
-                return null;
-            }
-
-            @Override
-            public int retrieveSize() {
-                return 0;
-            }
-        };
+        BowlingFrame mock = Mockito.mock(BowlingFrame.class);
+        Mockito.when(mock.retrieveSum()).thenReturn(0);
         frame.setPrevious(mock);
         frame.addScore(Score.ONE);
         frame.addScore(Score.NINE);
@@ -154,67 +37,8 @@ public class EndFrameTest {
     @Test
     public void testSumWithStrikeAndSpare2() {
         EndFrame frame = new EndFrame();
-        BowlingFrame mock = new BowlingFrame() {
-            @Override
-            public int retrieveSum() {
-                return 0;
-            }
-
-            @Override
-            public Score retrieveNextScore(int i) {
-                return null;
-            }
-
-            @Override
-            public void addScore(Score score) {
-
-            }
-
-            @Override
-            public void setPrevious(BowlingFrame previous) {
-
-            }
-
-            @Override
-            public BowlingFrame getPrevious() {
-                return null;
-            }
-
-            @Override
-            public void setNext(BowlingFrame next) {
-
-            }
-
-            @Override
-            public BowlingFrame getNext() {
-                return null;
-            }
-
-            @Override
-            public boolean hasStrike() {
-                return false;
-            }
-
-            @Override
-            public boolean hasSpare() {
-                return false;
-            }
-
-            @Override
-            public boolean canAddScore() {
-                return false;
-            }
-
-            @Override
-            public List<Score> retrieveScoreList() {
-                return null;
-            }
-
-            @Override
-            public int retrieveSize() {
-                return 0;
-            }
-        };
+        BowlingFrame mock = Mockito.mock(BowlingFrame.class);
+        Mockito.when(mock.retrieveSum()).thenReturn(0);
         frame.setPrevious(mock);
         frame.addScore(Score.STRIKE);
         frame.addScore(Score.ONE);
@@ -225,67 +49,8 @@ public class EndFrameTest {
     @Test
     public void testSumWithThreeStrikes() {
         EndFrame frame = new EndFrame();
-        BowlingFrame mock = new BowlingFrame() {
-            @Override
-            public int retrieveSum() {
-                return 0;
-            }
-
-            @Override
-            public Score retrieveNextScore(int i) {
-                return null;
-            }
-
-            @Override
-            public void addScore(Score score) {
-
-            }
-
-            @Override
-            public void setPrevious(BowlingFrame previous) {
-
-            }
-
-            @Override
-            public BowlingFrame getPrevious() {
-                return null;
-            }
-
-            @Override
-            public void setNext(BowlingFrame next) {
-
-            }
-
-            @Override
-            public BowlingFrame getNext() {
-                return null;
-            }
-
-            @Override
-            public boolean hasStrike() {
-                return false;
-            }
-
-            @Override
-            public boolean hasSpare() {
-                return false;
-            }
-
-            @Override
-            public boolean canAddScore() {
-                return false;
-            }
-
-            @Override
-            public List<Score> retrieveScoreList() {
-                return null;
-            }
-
-            @Override
-            public int retrieveSize() {
-                return 0;
-            }
-        };
+        BowlingFrame mock = Mockito.mock(BowlingFrame.class);
+        Mockito.when(mock.retrieveSum()).thenReturn(0);
         frame.setPrevious(mock);
         frame.addScore(Score.STRIKE);
         frame.addScore(Score.STRIKE);
