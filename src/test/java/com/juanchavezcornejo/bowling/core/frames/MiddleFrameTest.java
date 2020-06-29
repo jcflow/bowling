@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MiddleFrameTest {
     @Test
-    void testSumWithNoSpareNoStrike() {
+    public void testSumWithNoSpareNoStrike() {
         MiddleFrame frame = new MiddleFrame();
         BowlingFrame mock = new BowlingFrame() {
             @Override
@@ -80,7 +80,7 @@ public class MiddleFrameTest {
     }
 
     @Test
-    void testSumWithStrike() {
+    public void testSumWithStrike() {
         MiddleFrame frame = new MiddleFrame();
         BowlingFrame mock = new BowlingFrame() {
             @Override
@@ -150,7 +150,7 @@ public class MiddleFrameTest {
     }
 
     @Test
-    void testSumWithSpare() {
+    public void testSumWithSpare() {
         MiddleFrame frame = new MiddleFrame();
         BowlingFrame mock = new BowlingFrame() {
             @Override
@@ -221,7 +221,7 @@ public class MiddleFrameTest {
     }
 
     @Test
-    void testRetrieveScoreListWithNoSpareNoStrike() {
+    public void testRetrieveScoreListWithNoSpareNoStrike() {
         MiddleFrame frame = new MiddleFrame();
         frame.addScore(Score.ONE);
         frame.addScore(Score.TWO);
@@ -232,7 +232,7 @@ public class MiddleFrameTest {
     }
 
     @Test
-    void testRetrieveScoreListWithStrike() {
+    public void testRetrieveScoreListWithStrike() {
         MiddleFrame frame = new MiddleFrame();
         frame.addScore(Score.STRIKE);
 
@@ -242,7 +242,7 @@ public class MiddleFrameTest {
     }
 
     @Test
-    void testRetrieveScoreListWithSpare() {
+    public void testRetrieveScoreListWithSpare() {
         MiddleFrame frame = new MiddleFrame();
         frame.addScore(Score.ONE);
         frame.addScore(Score.NINE);
@@ -277,7 +277,7 @@ public class MiddleFrameTest {
     }
 
     @Test
-    void testHasStrikeWithValidSpare1() {
+    public void testHasStrikeWithValidSpare1() {
         MiddleFrame frame = new MiddleFrame();
         frame.addScore(Score.ONE);
         frame.addScore(Score.NINE);
@@ -285,7 +285,7 @@ public class MiddleFrameTest {
     }
 
     @Test
-    void testHasStrikeWithValidSpare2() {
+    public void testHasStrikeWithValidSpare2() {
         MiddleFrame frame = new MiddleFrame();
         frame.addScore(Score.NINE);
         frame.addScore(Score.ONE);
@@ -300,7 +300,7 @@ public class MiddleFrameTest {
         assertFalse(frame.hasSpare());
     }
     @Test
-    void testAddScore() {
+    public void testAddScore() {
         MiddleFrame frame = new MiddleFrame();
         assertTrue(frame.canAddScore());
         frame.addScore(Score.ONE);
@@ -310,7 +310,7 @@ public class MiddleFrameTest {
     }
 
     @Test
-    void testRetrieveSize() {
+    public void testRetrieveSize() {
         MiddleFrame frame = new MiddleFrame();
         assertEquals(2, frame.retrieveSize());
     }

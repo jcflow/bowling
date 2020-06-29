@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BowlingGameTest {
     @Test
-    void game() {
+    public void testAddPlayer() {
         BowlingGame game = new BowlingGame();
         BowlingPlayer player = new BowlingPlayer("Juan", 10);
         game.addPlayer(player);
@@ -18,7 +18,7 @@ public class BowlingGameTest {
     }
 
     @Test
-    void game1() {
+    public void testRetrieveFrameResultWithNoStrikeNoSpare() {
         BowlingGame game = new BowlingGame();
         BowlingPlayer player = new BowlingPlayer("Juan", 3);
         game.addPlayer(player);
@@ -39,7 +39,7 @@ public class BowlingGameTest {
     }
 
     @Test
-    void game2() {
+    public void testRetrieveFrameResultWithZeros() {
         BowlingGame game = new BowlingGame();
         BowlingPlayer player = new BowlingPlayer("Juan", 3);
         game.addPlayer(player);
@@ -61,7 +61,7 @@ public class BowlingGameTest {
 
 
     @Test
-    void game3() {
+    public void testRetrieveFrameResultWithSpare() {
         BowlingGame game = new BowlingGame();
         BowlingPlayer player = new BowlingPlayer("Juan", 3);
         game.addPlayer(player);
@@ -82,7 +82,7 @@ public class BowlingGameTest {
     }
 
     @Test
-    void game4() {
+    public void testRetrieveFrameResultWithFouls() {
         BowlingGame game = new BowlingGame();
         BowlingPlayer player = new BowlingPlayer("Juan", 3);
         game.addPlayer(player);
@@ -103,7 +103,7 @@ public class BowlingGameTest {
     }
 
     @Test
-    void game5() {
+    public void testRetrieveFrameResultWithStrikes() {
         BowlingGame game = new BowlingGame();
         BowlingPlayer player = new BowlingPlayer("Juan", 3);
         game.addPlayer(player);

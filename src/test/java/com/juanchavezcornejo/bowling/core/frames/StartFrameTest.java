@@ -273,7 +273,7 @@ public class StartFrameTest {
     }
 
     @Test
-    void testHasStrikeWithValidSpare1() {
+    public void testHasStrikeWithValidSpare1() {
         StartFrame frame = new StartFrame();
         frame.addScore(Score.ONE);
         frame.addScore(Score.NINE);
@@ -281,7 +281,7 @@ public class StartFrameTest {
     }
 
     @Test
-    void testHasStrikeWithValidSpare2() {
+    public void testHasStrikeWithValidSpare2() {
         StartFrame frame = new StartFrame();
         frame.addScore(Score.NINE);
         frame.addScore(Score.ONE);
@@ -289,7 +289,7 @@ public class StartFrameTest {
     }
 
     @Test
-    void testHasStrikeWithNoSpare() {
+    public void testHasStrikeWithNoSpare() {
         StartFrame frame = new StartFrame();
         frame.addScore(Score.ONE);
         frame.addScore(Score.TWO);
@@ -297,7 +297,7 @@ public class StartFrameTest {
     }
 
     @Test
-    void testAddScore() {
+    public void testAddScore() {
         StartFrame frame = new StartFrame();
         assertTrue(frame.canAddScore());
         frame.addScore(Score.ONE);
@@ -307,7 +307,7 @@ public class StartFrameTest {
     }
 
     @Test
-    void testRetrieveSize() {
+    public void testRetrieveSize() {
         StartFrame frame = new StartFrame();
         assertEquals(2, frame.retrieveSize());
     }

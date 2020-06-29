@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EndFrameTest {
     @Test
-    void testSumWithNoSpareNoStrike() {
+    public void testSumWithNoSpareNoStrike() {
         EndFrame frame = new EndFrame();
         BowlingFrame mock = new BowlingFrame() {
             @Override
@@ -81,7 +81,7 @@ public class EndFrameTest {
     }
 
     @Test
-    void testSumWithStrikeAndSpare1() {
+    public void testSumWithStrikeAndSpare1() {
         EndFrame frame = new EndFrame();
         BowlingFrame mock = new BowlingFrame() {
             @Override
@@ -152,7 +152,7 @@ public class EndFrameTest {
     }
 
     @Test
-    void testSumWithStrikeAndSpare2() {
+    public void testSumWithStrikeAndSpare2() {
         EndFrame frame = new EndFrame();
         BowlingFrame mock = new BowlingFrame() {
             @Override
@@ -223,7 +223,7 @@ public class EndFrameTest {
     }
 
     @Test
-    void testSumWithThreeStrikes() {
+    public void testSumWithThreeStrikes() {
         EndFrame frame = new EndFrame();
         BowlingFrame mock = new BowlingFrame() {
             @Override
@@ -294,7 +294,7 @@ public class EndFrameTest {
     }
 
     @Test
-    void testRetrieveScoreListWithNoSpareNoStrike() {
+    public void testRetrieveScoreListWithNoSpareNoStrike() {
         EndFrame frame = new EndFrame();
         frame.addScore(Score.ONE);
         frame.addScore(Score.TWO);
@@ -307,7 +307,7 @@ public class EndFrameTest {
     }
 
     @Test
-    void testRetrieveScoreListWithStrike() {
+    public void testRetrieveScoreListWithStrike() {
         EndFrame frame = new EndFrame();
         frame.addScore(Score.STRIKE);
         frame.addScore(Score.NINE);
@@ -320,7 +320,7 @@ public class EndFrameTest {
     }
 
     @Test
-    void testRetrieveScoreListWithSpare() {
+    public void testRetrieveScoreListWithSpare() {
         EndFrame frame = new EndFrame();
         frame.addScore(Score.ONE);
         frame.addScore(Score.NINE);
@@ -361,7 +361,7 @@ public class EndFrameTest {
 
 
     @Test
-    void testHasStrikeWithValidSpare1() {
+    public void testHasStrikeWithValidSpare1() {
         EndFrame frame = new EndFrame();
         frame.addScore(Score.ONE);
         frame.addScore(Score.NINE);
@@ -370,7 +370,7 @@ public class EndFrameTest {
     }
 
     @Test
-    void testHasStrikeWithValidSpare2() {
+    public void testHasStrikeWithValidSpare2() {
         EndFrame frame = new EndFrame();
         frame.addScore(Score.STRIKE);
         frame.addScore(Score.NINE);
@@ -379,7 +379,7 @@ public class EndFrameTest {
     }
 
     @Test
-    void testHasStrikeWithNoSpare() {
+    public void testHasStrikeWithNoSpare() {
         EndFrame frame = new EndFrame();
         frame.addScore(Score.ONE);
         frame.addScore(Score.TWO);
@@ -388,7 +388,7 @@ public class EndFrameTest {
     }
 
     @Test
-    void endframe8() {
+    public void endframe8() {
         EndFrame frame = new EndFrame();
         assertTrue(frame.canAddScore());
         frame.addScore(Score.ONE);
@@ -400,7 +400,7 @@ public class EndFrameTest {
     }
 
     @Test
-    void testRetrieveSize() {
+    public void testRetrieveSize() {
         EndFrame frame = new EndFrame();
         assertEquals(3, frame.retrieveSize());
     }
