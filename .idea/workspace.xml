@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59e3a48f-3570-49cf-bc0a-a8f214c27163" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/juanchavezcornejo/bowling/score/Score.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/juanchavezcornejo/bowling/score/ScoreFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/juanchavezcornejo/bowling/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Bowling-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/juanchavezcornejo/bowling/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/original-Bowling-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/ProofTest.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-ProofTest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/ProofTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/juanchavezcornejo/bowling/ScoreFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/juanchavezcornejo/bowling/ScoreFactoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,11 +41,14 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.juanchavezcornejo.bowling" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.juanchavezcornejo.bowling.frames" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/com/juanchavezcornejo/bowling/score" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ScoreFactoryTest">
+  <component name="RunManager" selected="JUnit.StartFrameTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.juanchavezcornejo.bowling.Main" />
       <module name="Bowling" />
@@ -81,16 +71,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProofTest.addition" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Bowling" />
-      <option name="PACKAGE_NAME" value="com.juanchavezcornejo.bowling" />
-      <option name="MAIN_CLASS_NAME" value="com.juanchavezcornejo.bowling.ProofTest" />
-      <option name="METHOD_NAME" value="addition" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ScoreFactoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Bowling" />
       <extension name="coverage">
@@ -106,17 +86,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StartFrameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Bowling" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.juanchavezcornejo.bowling.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.juanchavezcornejo.bowling" />
+      <option name="MAIN_CLASS_NAME" value="com.juanchavezcornejo.bowling.StartFrameTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Bowling-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/target/Bowling-1.0-SNAPSHOT.jar" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.StartFrameTest" />
         <item itemvalue="JUnit.ScoreFactoryTest" />
         <item itemvalue="JAR Application.Bowling-1.0-SNAPSHOT.jar" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.ProofTest" />
-        <item itemvalue="JUnit.ProofTest.addition" />
       </list>
     </recent_temporary>
   </component>
@@ -132,7 +127,7 @@
       <updated>1593253308034</updated>
       <workItem from="1593253311112" duration="74000" />
       <workItem from="1593253397201" duration="85000" />
-      <workItem from="1593253551075" duration="5780000" />
+      <workItem from="1593253551075" duration="6795000" />
     </task>
     <servers />
   </component>
@@ -144,6 +139,10 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="320" y="128" key="#Project_Structure/0.23.1440.877@0.23.1440.877" timestamp="1593253672792" />
+    <state x="533" y="174" key="#com.intellij.ide.util.MemberChooser" timestamp="1593435162215">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="533" y="174" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877@0.23.1440.877" timestamp="1593435162214" />
     <state x="484" y="327" width="471" height="273" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1593256032198">
       <screen x="0" y="23" width="1440" height="877" />
     </state>

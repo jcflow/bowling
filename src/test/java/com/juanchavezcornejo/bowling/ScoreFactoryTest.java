@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ScoreFactoryTest {
     @Test
-    void createScoreWithValidParameters() {
+    public void testCreateScoreWithValidParameters() {
         Score score = ScoreFactory.createScore("0");
         assertEquals(score, Score.ZERO);
 
